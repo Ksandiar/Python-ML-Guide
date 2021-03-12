@@ -34,7 +34,7 @@ class pcn_logic: # implementation of logical perceptron
         self.weights = weights
         print('\npcn train completed')
         
-class linreg: # implementation of linear regression
+class lin_reg: # implementation of linear regression
     
     def __init__(self):
         pass
