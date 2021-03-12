@@ -5,6 +5,8 @@ class pcn_logic: # implementation of logical perceptron
     
     def train(self, inputs, targets, lr, n_iter):
         
+        import numpy as np
+        
         n_obs = np.shape(inputs)[0]
         n_in = np.shape(inputs)[1]
         n_out = np.shape(targets)[1]
@@ -31,3 +33,23 @@ class pcn_logic: # implementation of logical perceptron
             
         self.weights = weights
         print('\npcn train completed')
+        
+class linreg: # implementation of linear regression
+    
+    def __init__(self):
+        pass
+    def train(self, inputs, targets):
+        
+        import numpy as np
+        
+        n_obs = np.shape(inputs)[0]
+        
+        X = np.concatenate((np.ones((n_obs,1)), inputs), axis = 1)
+        
+        beta = np.dot(np.dot(np.linalg.inv(np.dot(np.transpose(X),X)),np.transpose(X)),targets)
+        
+        self.beta = beta
+        self.outputs = np.dot(X,beta)
+        self.R_square = 1 - (np.sum((targets - self.outputs)**2) / np.sum((targets - np.mean(targets))**2))
+        
+        print("lin_reg train completed")
